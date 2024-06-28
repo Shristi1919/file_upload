@@ -6,7 +6,6 @@ Here is a video version to understand the concept [Youtube](https://youtu.be/BgQ
 
 ## Repository pattern
 Repositories are classes or components that encapsulate the logic required to access data sources. They centralize common data access functionality, providing better maintainability and decoupling the infrastructure or technology used to access databases from the domain model layer. [Microsoft](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) 
-
 ## How to Run 
 - Rename `.env.example` file to .env inside your project root and fill the database information.
 - Open the console and cd your project root directory
