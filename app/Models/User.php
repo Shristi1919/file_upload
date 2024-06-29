@@ -2,18 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-// class User extends Model
-class User extends Authenticatable // Change this to extend Authenticatable
+class User extends Authenticatable
 {
-    use Notifiable, HasFactory; // Add HasFactory here
+    use Notifiable, HasFactory;
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'active',
     ];
 
     protected $hidden = [
@@ -25,5 +23,3 @@ class User extends Authenticatable // Change this to extend Authenticatable
         return $this->hasMany(Post::class);
     }
 }
-
-

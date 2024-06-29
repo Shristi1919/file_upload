@@ -39,7 +39,7 @@ class ProductRepository
         return Product::query();
     }
 
-    public function categories(Product $product,  $categoryIds)
+    public function categories(Product $product, $categoryIds)
     {
         $product->categories()->sync($categoryIds);
     }
@@ -51,7 +51,7 @@ class ProductRepository
         if ($search) {
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', '%' . $search . '%')
-                  ->orWhere('description', 'like', '%' . $search . '%');
+                    ->orWhere('description', 'like', '%' . $search . '%');
             });
         }
 
@@ -67,8 +67,5 @@ class ProductRepository
 
         return $query->paginate(10);
     }
-
-
-
 
 }

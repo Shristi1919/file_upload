@@ -1,13 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\AuthenController;
-
-
-
-
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,22 +14,18 @@ use App\Http\Controllers\AuthenController;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 /*
-* Route for task
-*/
-
-
+ * Route for task
+ */
 
 Route::get('registration', [AuthenController::class, 'registration'])->name('register');
 Route::post('register-user', [AuthenController::class, 'registerUser'])->name('register-user');
 
 Route::get('login', [AuthenController::class, 'login'])->name('login');
 Route::post('login-user', [AuthenController::class, 'loginUser'])->name('login-user');
-
-
-
+Route::get('user/inactive', [AuthenController::class, 'inactiveUser'])->name('user.inactive');
 
 Route::middleware(['auth.check'])->group(function () {
 
@@ -57,11 +49,6 @@ Route::middleware(['auth.check'])->group(function () {
     Route::put('/poststest/{post}/edit', [PostController::class, 'updatetest'])->name('posts.updatetest');
     Route::delete('/poststest/{post}', [PostController::class, 'destroytest'])->name('posts.destroytest');
 });
-
-
-
-
-
 
 /*
  * Route for comment

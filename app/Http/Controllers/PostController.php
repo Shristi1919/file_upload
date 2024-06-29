@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-use Illuminate\Http\Request;
 use App\Repository\PostRepository;
 use App\Repository\UserRepository;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-
 
 class PostController extends Controller
 {
@@ -28,14 +25,13 @@ class PostController extends Controller
         if ($request->has('search')) {
             $search = $request->get('search');
             $query->where('title', 'LIKE', "%{$search}%")
-                  ->orWhere('content', 'LIKE', "%{$search}%");
+                ->orWhere('content', 'LIKE', "%{$search}%");
         }
 
         $posts = $query->paginate(10);
 
         return view('posts.index', compact('posts'));
     }
-
 
     public function create()
     {
@@ -57,14 +53,12 @@ class PostController extends Controller
             'user_id' => $userId,
         ];
 
-
         $this->postRepository->create($data);
 
         Session::flash('success_message', 'Post created successfully!');
 
         return redirect()->route('posts.index');
     }
-
 
     public function storetest(Request $request)
     {
@@ -81,13 +75,9 @@ class PostController extends Controller
             'user_id' => $userId,
         ];
 
-
-        $post= $this->postRepository->create($data);
+        $post = $this->postRepository->create($data);
         return response()->json($post, 201);
     }
-
-
-
 
     public function show($id)
     {
@@ -105,7 +95,7 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required|string'
+            'content' => 'required|string',
         ]);
 
         $userId = $this->userRepository->getCurrentUserId();
@@ -123,7 +113,7 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required|string'
+            'content' => 'required|string',
         ]);
 
         $userId = $this->userRepository->getCurrentUserId();
@@ -131,7 +121,7 @@ class PostController extends Controller
         $data = $request->all();
         $data['user_id'] = $userId;
 
-        $post= $this->postRepository->update($id, $data);
+        $post = $this->postRepository->update($id, $data);
 
         return response()->json($post, 200);
 
@@ -147,7 +137,7 @@ class PostController extends Controller
 
     public function destroytest($id)
     {
-       $this->postRepository->delete($id);
+        $this->postRepository->delete($id);
         return response()->json(['message' => 'Post deleted successfully'], 200);
 
     }
@@ -158,4 +148,3 @@ class PostController extends Controller
         return view('posts.user_posts', compact('posts'));
     }
 }
-

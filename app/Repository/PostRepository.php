@@ -39,10 +39,9 @@ class PostRepository
         return Post::where('user_id', $userId)->get();
     }
 
-        public function query()
+    public function query()
     {
         return Post::query();
     }
-
 
 }

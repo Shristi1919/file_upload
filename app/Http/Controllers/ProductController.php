@@ -2,24 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Repository\ProductRepository;
-use App\Repository\CategoryRepository;
-use Illuminate\Support\Facades\Session;
 use App\Models\Product;
-use App\Models\Category;
+use App\Repository\CategoryRepository;
+use App\Repository\ProductRepository;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
     protected $productRepository;
     protected $categoryRepository;
 
-    public function __construct(ProductRepository $productRepository,CategoryRepository $categoryRepository)
+    public function __construct(ProductRepository $productRepository, CategoryRepository $categoryRepository)
     {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
     }
-
 
     public function index(Request $request)
     {
@@ -40,7 +38,6 @@ class ProductController extends Controller
         return view('products.create', compact('categories'));
     }
 
-
     public function store(Request $request)
     {
         $request->validate([
@@ -53,8 +50,8 @@ class ProductController extends Controller
             'category_id.required' => 'Please select a category.',
         ]);
 
-       $product=$this->productRepository->create($request->all());
-       $this->productRepository->categories($product, $request->input('category_id'));
+        $product = $this->productRepository->create($request->all());
+        $this->productRepository->categories($product, $request->input('category_id'));
 
         Session::flash('success_message', 'Product created successfully');
 
@@ -77,7 +74,6 @@ class ProductController extends Controller
         return view('products.edit', compact('product', 'categories'));
     }
 
-
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -90,7 +86,7 @@ class ProductController extends Controller
             'category_id.required' => 'Please select a category.',
         ]);
 
-        $product= $this->productRepository->update($id, $request->all());
+        $product = $this->productRepository->update($id, $request->all());
         $this->productRepository->categories($product, $request->input('category_id'));
 
         Session::flash('success_message', 'Product updated successfully');
