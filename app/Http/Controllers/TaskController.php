@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Repository\TaskRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 class TaskController extends Controller
@@ -23,13 +23,13 @@ class TaskController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Tasks fetched successfully',
-                'data' => $tasks
+                'data' => $tasks,
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'An error occurred while fetching tasks',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 500);
         }
     }
@@ -47,19 +47,19 @@ class TaskController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Task created successfully',
-                'data' => $task
+                'data' => $task,
             ], 201);
         } catch (ValidationException $e) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Validation failed',
-                'errors' => $e->errors()
+                'errors' => $e->errors(),
             ], 422);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'An error occurred while creating the task',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 500);
         }
     }
@@ -72,26 +72,26 @@ class TaskController extends Controller
             if (!$task) {
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'Task not found'
+                    'message' => 'Task not found',
                 ], 404);
             }
 
             return response()->json([
                 'status' => 'success',
                 'message' => 'Task fetched successfully',
-                'data' => $task
+                'data' => $task,
             ]);
         } catch (ModelNotFoundException $e) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Task not found',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 404);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'An error occurred while retrieving the task',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 500);
         }
     }
@@ -110,7 +110,7 @@ class TaskController extends Controller
             if (!$task) {
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'Task not found'
+                    'message' => 'Task not found',
                 ], 404);
             }
 
@@ -118,25 +118,25 @@ class TaskController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Task updated successfully',
-                'data' => $updatedTask
+                'data' => $updatedTask,
             ]);
         } catch (ValidationException $e) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Validation failed',
-                'errors' => $e->errors()
+                'errors' => $e->errors(),
             ], 422);
         } catch (ModelNotFoundException $e) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Task not found',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 404);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'An error occurred while updating the task',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 500);
         }
     }
@@ -149,26 +149,26 @@ class TaskController extends Controller
             if (!$task) {
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'Task not found'
+                    'message' => 'Task not found',
                 ], 404);
             }
 
             $this->taskRepository->delete($task);
             return response()->json([
                 'status' => 'success',
-                'message' => 'Task deleted successfully'
+                'message' => 'Task deleted successfully',
             ]);
         } catch (ModelNotFoundException $e) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Task not found',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 404);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'An error occurred while deleting the task',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 500);
         }
     }

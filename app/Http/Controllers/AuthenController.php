@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use App\Repository\UserRepository;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Session;
 
 class AuthenController extends Controller
 {
@@ -27,7 +26,7 @@ class AuthenController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:8|max:12'
+            'password' => 'required|min:8|max:12',
         ]);
 
         $user = $this->userRepository->createUser($request->only(['name', 'email', 'password']));
@@ -48,7 +47,7 @@ class AuthenController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required|min:8|max:12'
+            'password' => 'required|min:8|max:12',
         ]);
 
         $user = $this->userRepository->findByEmail($request->email);
@@ -92,7 +91,7 @@ class AuthenController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,'.$userId,
+            'email' => 'required|string|email|max:255|unique:users,email,' . $userId,
         ]);
 
         $user = $this->userRepository->updateUser($userId, $request->only(['name']));
@@ -102,4 +101,10 @@ class AuthenController extends Controller
             return back()->with('fail', 'Failed to update profile.');
         }
     }
+
+    public function inactiveUser()
+    {
+        return view('user.inactive');
+    }
+
 }

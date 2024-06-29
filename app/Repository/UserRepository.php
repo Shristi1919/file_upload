@@ -3,9 +3,8 @@
 namespace App\Repository;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Session;
 
 class UserRepository
 {
@@ -13,7 +12,6 @@ class UserRepository
     {
         return User::all();
     }
-
 
     public function findById($id)
     {
