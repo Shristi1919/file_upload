@@ -65,5 +65,4 @@ class Kernel extends HttpKernel
         // 'isLoggedIn' => \App\Http\Middleware\AuthCheck::class,
         'alreadyLoggedIn' => \App\Http\Middleware\AlreadyLoggedIn::class,
     ];
-
 }
