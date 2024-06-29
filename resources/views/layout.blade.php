@@ -8,59 +8,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <!-- Toastr CSS -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <style>
-        body {
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-            flex-direction: column;
-        }
-        .sidebar {
-            width: 250px;
-            background: #343a40;
-            color: #fff;
-            padding: 15px;
-            flex-shrink: 0;
-            height: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            overflow-y: auto;
-        }
-        .sidebar a {
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 15px;
-            display: block;
-        }
-        .sidebar a:hover {
-            background: #495057;
-        }
-        .content {
-            margin-left: 250px;
-            padding: 20px;
-            flex-grow: 1;
-            overflow-y: auto;
-        }
-        .navbar-dark .navbar-nav .nav-link {
-            color: rgba(255, 255, 255, 0.8);
-        }
-        .header {
-            width: 100%;
-            height: 60px;
-            background: #007bff;
-            color: #fff;
-            padding: 15px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-right: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+
 </head>
 <body>
     <!-- Sidebar -->
@@ -109,25 +58,26 @@
     <!-- Toastr JS -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <!-- Toastr Configuration -->
     <script>
-        $(document).ready(function() {
-            @if(Session::has('success_message'))
-                toastr.success("{{ Session::get('success_message') }}", 'Success');
-            @endif
+    $(document).ready(function() {
+        @if(Session::has('success_message'))
+            toastr.success("{{ Session::get('success_message') }}", 'Success');
+        @endif
 
-            @if(Session::has('error_message'))
-                toastr.error("{{ Session::get('error_message') }}", 'Error');
-            @endif
+        @if(Session::has('error_message'))
+            toastr.error("{{ Session::get('error_message') }}", 'Error');
+        @endif
 
-            @if(Session::has('info_message'))
-                toastr.info("{{ Session::get('info_message') }}", 'Info');
-            @endif
+        @if(Session::has('info_message'))
+            toastr.info("{{ Session::get('info_message') }}", 'Info');
+        @endif
 
-            @if(Session::has('warning_message'))
-                toastr.warning("{{ Session::get('warning_message') }}", 'Warning');
-            @endif
-        });
+        @if(Session::has('warning_message'))
+            toastr.warning("{{ Session::get('warning_message') }}", 'Warning');
+        @endif
+    });
     </script>
+
+
 </body>
 </html>
