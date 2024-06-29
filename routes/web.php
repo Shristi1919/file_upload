@@ -39,6 +39,8 @@ Route::middleware(['auth.check'])->group(function () {
 
     Route::get('dashboard', [AuthenController::class, 'dashboard'])->name('dashboard');
     Route::get('logout', [AuthenController::class, 'logout'])->name('logout');
+    Route::get('user/profile', [AuthenController::class, 'editProfile'])->name('user.profile.edit');
+    Route::put('user/profile/update', [AuthenController::class, 'updateProfile'])->name('user.profile.update');
 
     Route::resource('/products', ProductController::class);
 

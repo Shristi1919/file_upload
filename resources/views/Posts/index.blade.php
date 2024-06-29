@@ -2,9 +2,6 @@
 
 @section('content')
     <div class="container">
-        {{-- <h2>List of Posts</h2>
-        <a href="{{ route('posts.create') }}" class="btn btn-primary mb-3">Create New Post</a> --}}
-
         <div class="row">
             <div class="col-md-10">
                 <h2>List of Posts</h2>

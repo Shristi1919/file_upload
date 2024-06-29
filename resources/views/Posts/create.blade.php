@@ -1,5 +1,6 @@
 @extends('layout')
 
+
 @section('content')
     <div class="container">
         <h2>Create New Post</h2>
