@@ -8,7 +8,8 @@
             @method('PUT')
             <div class="form-group">
                 <label for="title">Title:</label>
-                <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $post->title) }}">
+                <input type="text" name="title" id="title" class="form-control"
+                    value="{{ old('title', $post->title) }}">
                 @if ($errors->has('title'))
                     <span class="text-danger">
                         <strong>{{ $errors->first('title') }}</strong>
@@ -25,6 +26,7 @@
                 @endif
             </div>
             <button type="submit" class="btn btn-primary">Update Post</button>
+            <a href="{{ route('posts.index') }}" class="btn btn-secondary">Back to Posts</a>
         </form>
     </div>
 @endsection
