@@ -32,6 +32,17 @@ class ProductController extends Controller
         return view('products.index', compact('products', 'search', 'category_id', 'min_price', 'categories'));
     }
 
+    public function eloquentQuery($min_price = null, $category_id = null)
+    {
+        $products = $this->productRepository->getEloquentQuery($min_price, $category_id);
+        if ($products->isNotEmpty()) {
+            return response()->json($products, 200);
+        } else {
+            return response()->json('Data not found.');
+        }
+
+    }
+
     public function create()
     {
         $categories = $this->categoryRepository->all();
