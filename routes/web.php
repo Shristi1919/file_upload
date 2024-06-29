@@ -36,6 +36,11 @@ Route::middleware(['auth.check'])->group(function () {
 
     Route::resource('/products', ProductController::class);
 
+    Route::get('/eloquentQuery/{min_price?}/{category_id?}', [ProductController::class, 'eloquentQuery'])
+        ->where('min_price', '[0-9]+')
+        ->where('category_id', '[0-9]+')
+        ->name('products.eloquentQuery');
+
     Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
     Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');

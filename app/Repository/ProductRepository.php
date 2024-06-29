@@ -68,4 +68,18 @@ class ProductRepository
         return $query->paginate(10);
     }
 
+    public function getEloquentQuery($min_price, $category_id)
+    {
+        $query = Product::query();
+        if ($min_price !== null) {
+            $query->where('price', '>=', $min_price);
+        }
+        if ($category_id !== null) {
+            $query->whereHas('categories', function ($q) use ($category_id) {
+                $q->where('categories.id', $category_id);
+            });
+        }
+        return $query->get();
+    }
+
 }
