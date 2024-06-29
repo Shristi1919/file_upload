@@ -25,6 +25,7 @@
                 @endif
             </div>
             <button type="submit" class="btn btn-primary">Create Post</button>
+            <a href="{{ route('posts.index') }}" class="btn btn-secondary">Back to Posts</a>
         </form>
     </div>
 @endsection

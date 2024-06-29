@@ -31,8 +31,9 @@ class AuthenController extends Controller
         ]);
 
         $user = $this->userRepository->createUser($request->only(['name', 'email', 'password']));
+
         if ($user) {
-            return back()->with('success_message', 'You have registered successfully.');
+            return redirect()->intended('login')->with('success_message', 'You have registered successfully.');
         } else {
             return back()->with('fail', 'Something went wrong!');
         }
