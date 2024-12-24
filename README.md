@@ -1,4 +1,4 @@
-# For job tabe : php artisan queue:table and php artisan migrate
+# For job table : php artisan queue:table and php artisan migrate
 
 # For Failed Table : php artisan queue:failed-table and php artisan migrate
 
