@@ -1,3 +1,9 @@
+# For job tabe : php artisan queue:table and php artisan migrate
+
+# For Failed Table : php artisan queue:failed-table and php artisan migrate
+
+# In .env file QUEUE_CONNECTION=database
+
 # Run queue:work Continuously Using a Batch File in windows.
 
 You can create a batch file to start the queue worker and then schedule it to run using Task Scheduler.
@@ -39,3 +45,7 @@ Save and Test:
 
 Save the task.
 Test it by right-clicking the task and selecting "Run."
+
+# Why Use dispatch()?
+
+The dispatch() function allows you to perform heavy or time-consuming tasks (like file uploads, sending emails, or processing reports) in the background without blocking the main application process. This improves user experience and application performance.
