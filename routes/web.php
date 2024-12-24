@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenController;
+use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,10 @@ use Illuminate\Support\Facades\Route;
 Route::get("/", function () {
     return view("welcome");
 });
+
+Route::get('/file-upload', [FileUploadController::class, 'index'])->name('file.upload.form');
+Route::post('/file-upload', [FileUploadController::class, 'upload'])->name('file.upload');
+
 Route::get('registration', [AuthenController::class, 'registration'])->name('register');
 Route::post('register-user', [AuthenController::class, 'registerUser'])->name('register-user');
 
@@ -56,6 +61,7 @@ Route::middleware(['auth.check'])->group(function () {
     Route::post('/poststest', [PostController::class, 'storetest'])->name('posts.storetest');
     Route::put('/poststest/{post}/edit', [PostController::class, 'updatetest'])->name('posts.updatetest');
     Route::delete('/poststest/{post}', [PostController::class, 'destroytest'])->name('posts.destroytest');
+
 });
 
 /*
